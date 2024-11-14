@@ -6,12 +6,6 @@ import game_life
 # i / coluna == linha
 
 
-VIZINHOS = [
-    [-1, -1], [-1, 0], [-1, 1],
-    [0, -1], [0, 1],
-    [1, -1], [1, 0], [1, 1],
-]
-
 
 
 if __name__ == '__main__':
@@ -31,5 +25,8 @@ if __name__ == '__main__':
     alive_cells = 0
     next_index = int(board_dimensions[1])
     
+    for index, line in enumerate(board_input):
+        if (index >= int(board_dimensions[1])) and (index % int(board_dimensions[1]) != 0) and ((index + 1) % int(board_dimensions[1]) != 0) and (index <= (int(board_dimensions[0]) * int(board_dimensions[1]) - int(board_dimensions[1]))):
+            soma = game_life.count_neighbors(board_input, index, int(board_dimensions[1]))
     # game_life.is_board_sucessor(board_input, board_output, board_dimensions)
     

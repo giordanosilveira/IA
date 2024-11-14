@@ -1,4 +1,13 @@
 
+VIZINHOS = [
+    [-1, -1], [-1, 0], [-1, 1],
+    [0, -1], [0, 1],
+    [1, -1], [1, 0], [1, 1],
+]
+
+
+
+
 def is_cell_alive(value : int) -> bool:
     if (int(value) == 1):
         return True
@@ -59,14 +68,35 @@ def is_board_sucessor(input_board : list, output_board : list, dimensions : list
             cell_value = get_next_cell_value(int(line), number_of_alive_cells)
             
             if cell_value != int(input_board[index]):
-                import ipdb
-                ipdb.set_trace()
                 is_sucessor = False
                 print("O tabuleiro de entrada não é gerado pelo de saída...", sep='\n')
                 break
-    print('dfas')
+
     if is_sucessor:
         print("O tabuleiro de entrada é gerado pelo de saída...", sep='\n')
+        
+        
+def count_neighbors(estado : list, index : int, n_columns : int) -> int:
+    
+    sum = 0
+    # 'Linha' e 'coluna' da lista estado
+    line = int(index / n_columns)
+    column = index % n_columns
+        
+    for vizinho in VIZINHOS:
+        
+        # 'Linha' e 'coluna' do vizinho de i,j na lista estado
+        line_neighbor = line + vizinho[0]
+        column_neighbor = column + vizinho[1]
+        
+        # index que representa o lugar que o vizinho está na lista estado
+        index_neighbor = line_neighbor*n_columns+column_neighbor
+        
+        sum += int(estado[index_neighbor])
+        
+        
+    return sum
+    
         
 
         
